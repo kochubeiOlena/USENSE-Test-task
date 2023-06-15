@@ -1,5 +1,4 @@
-import { Component, SecurityContext } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-password-strength',
@@ -11,13 +10,9 @@ export class PasswordStrengthComponent {
   colorBar2 = 'gray';
   colorBar3 = 'gray';
 
-  constructor(private sanitizer: DomSanitizer) { }
-
 
   onPasswordInput(event: Event) {
     let password = (event.target as HTMLInputElement).value;
-    password = this.sanitizer.sanitize(SecurityContext.NONE, password) || "";
-
     if (password.length < 8) {
       this.colorBar1 = 'red';
       this.colorBar2 = 'red';
